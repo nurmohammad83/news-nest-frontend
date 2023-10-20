@@ -3,6 +3,7 @@ import {
   getFromLocalStorage,
   setToLocalStorage,
 } from "@/utils/set.local.storage";
+import { Secret } from "jsonwebtoken";
 
 export const storeUserInfo = ({ accessToken }: { accessToken: string }) => {
   return setToLocalStorage("authToken", accessToken as string);
@@ -12,7 +13,10 @@ export const getUserInfo = () => {
   const authToken = getFromLocalStorage("authToken");
   // console.log(authToken);
   if (authToken) {
-    const decodedData = jwtHelpers.verifyToken(authToken, "secret");
+    const decodedData = jwtHelpers.verifyToken(
+      authToken,
+      process.env.JWT_SECRET as Secret
+    );
     return decodedData;
   } else {
     return "";
