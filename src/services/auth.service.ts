@@ -1,3 +1,4 @@
+import { jwtHelpers } from "@/helpers/jwtHelper";
 import {
   getFromLocalStorage,
   setToLocalStorage,
@@ -11,7 +12,7 @@ export const getUserInfo = () => {
   const authToken = getFromLocalStorage("authToken");
   // console.log(authToken);
   if (authToken) {
-    const decodedData = decodedToken("authToken");
+    const decodedData = jwtHelpers.verifyToken(authToken, "secret");
     return decodedData;
   } else {
     return "";
@@ -19,7 +20,7 @@ export const getUserInfo = () => {
 };
 
 export const isLoggedIn = () => {
-  const authToken = getFromLocalStorage(authToken);
+  const authToken = getFromLocalStorage("authToken");
   return !!authToken;
 };
 
@@ -27,13 +28,13 @@ export const removeUserInfo = (key: string) => {
   return localStorage.removeItem(key);
 };
 
-export const getNewAccessToken = async () => {
-  return await axiosInstance({
-    url: `${getBaseUrl()}/auth/refresh-token`,
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    withCredentials: true,
-  });
-};
+// export const getNewAccessToken = async () => {
+//   return await axiosInstance({
+//     url: `${getBaseUrl()}/auth/refresh-token`,
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     withCredentials: true,
+//   });
+// };

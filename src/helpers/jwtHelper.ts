@@ -1,5 +1,11 @@
-import jwtDecode from "jwt-decode";
+import jwt, { Secret } from "jsonwebtoken";
 
-export const decodedToken = (token: string) => {
-  return jwtDecode(token);
+const verifyToken = (token: string, secret: Secret) => {
+  try {
+    return jwt.verify(token, secret);
+  } catch (error) {
+    return null;
+  }
 };
+
+export const jwtHelpers = { verifyToken };
