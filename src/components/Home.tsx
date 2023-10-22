@@ -10,8 +10,9 @@ import { EffectFade, Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from 'next/image';
 import Paragraph from 'antd/es/typography/Paragraph';
 import Title from 'antd/es/typography/Title';
+import { INews } from '@/types/common';
 
-const Home = ({ newses }:any) => {
+const Home = ({ newses }:{newses:INews[]}) => {
   return (
     <div className='pb-6 border-b border-gray-100' id='hero'>
       <div className='mx-6 font-roboto py-4'>
