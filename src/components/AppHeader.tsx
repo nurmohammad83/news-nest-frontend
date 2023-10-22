@@ -107,7 +107,7 @@ const AppHeader = () => {
         </Menu>
       </Header>
       <Divider className="m-0 p-0"/>
-      <div className=" dark:bg-black bg-white text-center dark:text-white text-black">
+      <div className=" bg-white text-center dark:text-white text-black">
 				<Row align="middle" justify='center'>
 					{
                         newses.map(news=>(

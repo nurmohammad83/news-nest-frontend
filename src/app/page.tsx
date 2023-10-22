@@ -1,6 +1,10 @@
+import { Home } from "@/components/Home"
+
 const Homepage = () => {
   return (
-    <div>sdfsdf</div>
+    <div className="h-screen">
+      <Home />
+    </div>
   )
 }
 export default Homepage
