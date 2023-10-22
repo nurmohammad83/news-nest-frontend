@@ -1,10 +1,14 @@
-import { Home } from "@/components/Home"
+import Home from "@/components/Home"
+import SubHeader from "@/components/SubHeader"
+import { getAllNews } from "@/services/news/get-all-news"
 
-const Homepage = () => {
-  return (
-    <div className="h-screen">
-      <Home />
-    </div>
-  )
+const Homepage =async () => {
+  const result = await getAllNews()
+ return (
+  <div>
+    <SubHeader />
+    <Home newses={result.data}/>
+  </div>
+ )
 }
 export default Homepage

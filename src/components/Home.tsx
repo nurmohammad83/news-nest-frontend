@@ -1,87 +1,81 @@
-'use client'
-import {useState} from 'react'
-import { Typography } from "antd";
+"use client"
+import React from 'react';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import styles from '../app/styles/home.module.css';
+import { EffectFade, Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from 'next/image';
-import card from '../assets/choose.jpg'
-import Marquee from 'react-fast-marquee';
-const { Title, Paragraph } = Typography;
+import Paragraph from 'antd/es/typography/Paragraph';
+import Title from 'antd/es/typography/Title';
 
-export const Home = () => {
+const Home = ({ newses }:any) => {
   return (
-    <div className="flex gap-4 justify-center w-full py-5 px-12">
-        <div className="w-8/12">
-       
-      <div
-        className="relative bg-cover bg-center h-full"
-        style={{
-          backgroundImage:
-            'url("https://res.cloudinary.com/dyy4n4fmh/image/upload/v1697715400/img-inner_zpung2.jpg")',
-        }}
-      >
-        <div className="h-full px-4 sm:px6 w-full absolute top-[80%] right-0 bottom-0 left-0">
-         
-            <Title className="text-white text-3xl font-poppins font-bold">
-              Appliance Repair Services
-            </Title>
-            <Paragraph ellipsis className="text-lg font-roboto text-white/80">
-              Fast, Reliable, and Professional Repairs Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae similique illum inventore, impedit nam laboriosam minima explicabo! Numquam maiores accusamus laudantium explicabo beatae atque. Veniam blanditiis vitae, voluptate iusto nihil nobis ex! Consequuntur praesentium possimus expedita, eum officia nihil ipsam, saepe perspiciatis voluptates modi nisi.
-            </Paragraph>
-         
+    <div className='pb-6 border-b border-gray-100' id='hero'>
+      <div className='mx-6 font-roboto py-4'>
+        <div className={styles.slidRow}>
+          <Swiper
+            spaceBetween={30}
+            effect={"fade"}
+            loop={true}
+            modules={[EffectFade, Navigation, Pagination, Autoplay]}
+            autoplay={{
+              delay: 7000,
+              disableOnInteraction: false,
+            }}
+            className={styles.firstSlider}
+          >
+            {
+              newses?.slice(5, 9).map((news:any) => <SwiperSlide className='h-full' key={news._id}>
+                <div className='relative w-full h-full cursor-pointer'>
+                  <Image width={300} height={200} className='w-full h-full' src={news?.images?.img1} alt='' />
+                  <div className='absolute w-full bottom-4 left-4 z-10'>
+                    
+                    <Title ellipsis className='text-white text-xl md:text-3xl cursor-pointer hover:text-primary font-semibold transition-colors duration-300'>{news?.heading}</Title>
+                    <Paragraph ellipsis className='text-white mt-2 text-sm md:text-md pr-5'>{news?.description[0]}</Paragraph>
+                  </div>
+                  <div className={styles.overlay}></div>
+                </div>
+              </SwiperSlide>)
+            }
+
+          </Swiper>
+          <Swiper
+            direction={"vertical"}
+            slidesPerView={4}
+            spaceBetween={30}
+            freeMode={true}
+            loop={true}
+            autoplay={{ delay: 1500, disableOnInteraction: false }}
+            pagination={{
+              clickable: true
+            }}
+            speed={1500}
+            modules={[Autoplay]}
+            className={styles.secondSlide}
+          >
+            {
+              newses?.slice(1, 5).map((news:any) => <SwiperSlide key={news?._id}>
+                <div className='flex justify-center gap-3 h-full cursor-pointer'>
+                  <div className='w-2/5 h-full'>
+                    <Image height={500} width={600} className='w-full h-full object-cover' src={news?.images?.img1} alt='' />
+                  </div>
+                  <div className='w-3/5 overflow-hidden py-1'>
+                  <span className='text-black p-1 text-sm rounded-sm bg-gray-300'>{news?.category}</span> 
+                    <Title ellipsis className='md:text-lg text-md leading-5 md:leading-4 xl:leading-6 py-2 m-0 cursor-pointer hover:text-primary font-medium transition-colors duration-300'>{news?.heading}</Title>
+                    <p className='text-sm md:text-md'>{news?.description[0].slice(0, 50)}...</p>
+                    
+                  </div>
+                </div>
+              </SwiperSlide>)
+            }
+          </Swiper>
         </div>
       </div>
-        </div>
-        <div className="w-4/12 flex h-full gap-4 font-roboto">
-         <div className='flex flex-col gap-2'>
-         <div className='flex justify-center items-center gap-3'>
-          <div className='w-[150px] h-full'>
-            <Image src={card} width={150} height={100} alt='img' className='w-ful h-full'/>
-           </div>
-           <div>
-            <span className='text-sm font-roboto rounded-md p-1 bg-slate-300 text-white'>life style</span>
-            <h3>
-            Face mask a new fashion accessory in ‘New Normal’
-            </h3>
-            <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, suscipit fugiat!</p>
-           </div>
-          </div>
-         <div className='flex justify-center items-center gap-3'>
-          <div className='w-[150px] h-full'>
-            <Image src={card} width={150} height={100} alt='img' className='w-ful h-full'/>
-           </div>
-           <div>
-            <span className='text-sm font-roboto rounded-md p-1 bg-slate-300 text-white'>life style</span>
-            <h3>
-            Face mask a new fashion accessory in ‘New Normal’
-            </h3>
-            <p className='text-ellipsis'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, suscipit fugiat!</p>
-           </div>
-          </div>
-         <div className='flex justify-center items-center gap-3'>
-          <div className='w-[150px] h-full'>
-            <Image src={card} width={150} height={100} alt='img' className='w-ful h-full'/>
-           </div>
-           <div>
-            <span className='text-sm font-roboto rounded-md p-1 bg-slate-300 text-white'>life style</span>
-            <h3>
-            Face mask a new fashion accessory in ‘New Normal’
-            </h3>
-            <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, suscipit fugiat!</p>
-           </div>
-          </div>
-         <div className='flex justify-center items-center gap-3'>
-          <div className='w-[150px] h-full'>
-            <Image src={card} width={150} height={100} alt='img' className='w-ful h-full'/>
-           </div>
-           <div>
-            <span className='text-sm font-roboto rounded-md p-1 bg-slate-300 text-white'>life style</span>
-            <h3>
-            Face mask a new fashion accessory in ‘New Normal’
-            </h3>
-            <p className='text-ellipsis'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, suscipit fugiat!</p>
-           </div>
-          </div>
-         </div>
-        </div>
     </div>
-  )
-}
+  );
+};
+
+export default Home;

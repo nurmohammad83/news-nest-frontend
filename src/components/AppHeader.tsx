@@ -106,19 +106,7 @@ const AppHeader = () => {
           )}
         </Menu>
       </Header>
-      <Divider className="m-0 p-0"/>
-      <div className=" bg-white text-center dark:text-white text-black">
-				<Row align="middle" justify='center'>
-					{
-                        newses.map(news=>(
-                           <Col xs={20} className="py-4" sm={16} md={6} lg={3} key={news.title}>
-                            <Link  className="text-black font-poppins font-bold" key={news.title} href="/" type="text">{news.title}</Link>
-                           </Col>
-                        ))
-                    }
-				</Row>
-			</div>
-            <Divider className="m-0 p-0"/>
+     
     </Layout>
   );
 };
