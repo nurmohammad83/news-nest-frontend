@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import styles from '../app/styles/home.module.css';
+import styles from '@/app/styles/home.module.css';
 import { EffectFade, Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from 'next/image';
 import Paragraph from 'antd/es/typography/Paragraph';
@@ -15,7 +15,7 @@ import { INews } from '@/types/common';
 const Home = ({ newses }:{newses:INews[]}) => {
   return (
     <div className='pb-6 border-b border-gray-100' id='hero'>
-      <div className='mx-6 font-roboto py-4'>
+      <div className='mx-10 font-roboto py-4'>
         <div className={styles.slidRow}>
           <Swiper
             spaceBetween={30}
@@ -65,7 +65,7 @@ const Home = ({ newses }:{newses:INews[]}) => {
                   </div>
                   <div className='w-3/5 overflow-hidden py-1'>
                   <span className='text-black p-1 text-sm rounded-sm bg-gray-300'>{news?.category}</span> 
-                    <Title ellipsis className='md:text-lg text-md leading-5 md:leading-4 xl:leading-6 py-2 m-0 cursor-pointer hover:text-primary font-medium transition-colors duration-300'>{news?.heading}</Title>
+                    <Title ellipsis className='text-base md:text-lg text-md leading-5 md:leading-4 xl:leading-6 py-2 m-0 cursor-pointer hover:text-primary font-medium transition-colors duration-300'>{news?.heading}</Title>
                     <p className='text-sm md:text-md'>{news?.description[0].slice(0, 50)}...</p>
                     
                   </div>
